@@ -1,0 +1,557 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Score",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 591133918144639
+		},
+		{
+			"eventType": "variable",
+			"name": "bg_speed",
+			"type": "number",
+			"initialValue": "250",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 880451406774659
+		},
+		{
+			"eventType": "variable",
+			"name": "Pontos",
+			"type": "string",
+			"initialValue": "",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 192126664649459
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 455316400938135,
+					"parameters": {
+						"interval-seconds": "0.1"
+					}
+				},
+				{
+					"id": "is-on-screen",
+					"objectClass": "Player",
+					"sid": 622015322875195
+				}
+			],
+			"actions": [
+				{
+					"id": "add-to-eventvar",
+					"objectClass": "System",
+					"sid": 104975628356516,
+					"parameters": {
+						"variable": "Score",
+						"value": "10"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "Text",
+					"sid": 639184763831566,
+					"parameters": {
+						"text": "Score"
+					}
+				}
+			],
+			"sid": 918692571069333
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-x-seconds",
+					"objectClass": "System",
+					"sid": 927124477585664,
+					"parameters": {
+						"interval-seconds": "random(0,4)"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "spawn-another-object",
+					"objectClass": "Spawner",
+					"sid": 770558204221341,
+					"parameters": {
+						"object": "frog",
+						"layer": "0",
+						"image-point": "0",
+						"create-hierarchy": false,
+						"template-name": "\"\""
+					}
+				}
+			],
+			"sid": 270685634018693
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 226753616188815
+				}
+			],
+			"actions": [
+				{
+					"id": "simulate-control",
+					"objectClass": "frog",
+					"sid": 881907386199438,
+					"behaviorType": "8Direction",
+					"parameters": {
+						"control": "left"
+					}
+				}
+			],
+			"sid": 441841852231860
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-overlapping-another-object",
+					"objectClass": "Player",
+					"sid": 811293131949701,
+					"parameters": {
+						"object": "frog"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "destroy",
+					"objectClass": "Player",
+					"sid": 144570466811407
+				},
+				{
+					"id": "request-url",
+					"objectClass": "AJAX",
+					"sid": 447122021813851,
+					"parameters": {
+						"tag": "\"Atualizar\"",
+						"url": "\"https://trabalhojogo2d-default-rtdb.firebaseio.com/ranking.json\""
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "RankingDeJogadores",
+					"sid": 861627532322826,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "NomeJogador",
+					"sid": 593919343387185,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Enviar",
+					"sid": 210793287847341,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Restart",
+					"sid": 156658112240152,
+					"parameters": {
+						"visibility": "visible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "GameOverText",
+					"sid": 152544566349572,
+					"parameters": {
+						"visibility": "visible"
+					}
+				}
+			],
+			"sid": 197125027991736
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-falling",
+					"objectClass": "Player",
+					"sid": 438869991496209,
+					"behaviorType": "Platform"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 224427400347476,
+					"parameters": {
+						"animation": "\"fall\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 859706960626696
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-jumping",
+					"objectClass": "Player",
+					"sid": 579922008257224,
+					"behaviorType": "Platform"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 452913505349057,
+					"parameters": {
+						"animation": "\"jump\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 154984359076580
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "is-on-floor",
+					"objectClass": "Player",
+					"sid": 686322290619330,
+					"behaviorType": "Platform"
+				}
+			],
+			"actions": [
+				{
+					"id": "set-animation",
+					"objectClass": "Player",
+					"sid": 321895041624945,
+					"parameters": {
+						"animation": "\"run\"",
+						"from": "beginning"
+					}
+				}
+			],
+			"sid": 238831032342559
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 245374797845978
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "TiledBackground",
+					"sid": 192834750558123,
+					"parameters": {
+						"x": "TiledBackground.X - bg_speed * dt"
+					}
+				},
+				{
+					"id": "set-x",
+					"objectClass": "Ground",
+					"sid": 935174194714535,
+					"parameters": {
+						"x": "Ground.X - bg_speed * dt"
+					}
+				}
+			],
+			"sid": 199453581040145
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-start-of-layout",
+					"objectClass": "System",
+					"sid": 795267592216751
+				}
+			],
+			"actions": [
+				{
+					"id": "set-visible",
+					"objectClass": "NomeJogador",
+					"sid": 465619488244402,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Restart",
+					"sid": 311792668035488,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "Enviar",
+					"sid": 587571521752475,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "RankingDeJogadores",
+					"sid": 444954967849729,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				},
+				{
+					"id": "set-visible",
+					"objectClass": "GameOverText",
+					"sid": 197699637605160,
+					"parameters": {
+						"visibility": "invisible"
+					}
+				}
+			],
+			"sid": 812014805261584
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-x",
+					"objectClass": "TiledBackground",
+					"sid": 396996127806839,
+					"parameters": {
+						"comparison": 3,
+						"x-co-ordinate": "-370"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "TiledBackground",
+					"sid": 494413930426641,
+					"parameters": {
+						"x": "360"
+					}
+				}
+			],
+			"sid": 662841614119693
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "compare-x",
+					"objectClass": "Ground",
+					"sid": 163131269634755,
+					"parameters": {
+						"comparison": 3,
+						"x-co-ordinate": "-370"
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "Ground",
+					"sid": 637040776553015,
+					"parameters": {
+						"x": "360"
+					}
+				}
+			],
+			"sid": 860851187327885
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "every-tick",
+					"objectClass": "System",
+					"sid": 810675906113823
+				}
+			],
+			"actions": [
+				{
+					"id": "set-x",
+					"objectClass": "Player",
+					"sid": 693873815127574,
+					"parameters": {
+						"x": "40"
+					}
+				}
+			],
+			"sid": 289113482038838
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "Restart",
+					"sid": 975010677051095
+				}
+			],
+			"actions": [
+				{
+					"id": "reset-global-variables",
+					"objectClass": "System",
+					"sid": 195522417423406,
+					"parameters": {
+						"reset-static": false
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 413643380179412
+				}
+			],
+			"sid": 902596258564766
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-completed",
+					"objectClass": "AJAX",
+					"sid": 836799001749602,
+					"parameters": {
+						"tag": "\"Atualizar\""
+					}
+				}
+			],
+			"actions": [
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 313642882102034,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "AJAX.LastData"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 723203175090380,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "replace(Pontos,\"{\",\"\")"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 639951471664095,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "replace(Pontos,\":\",\": \")"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 704824881192847,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "replace(Pontos,\"}\",\"\")\r"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 830808131931250,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "replace(Pontos,\"\"\"\",\"\")\r"
+					}
+				},
+				{
+					"id": "set-eventvar-value",
+					"objectClass": "System",
+					"sid": 953037734834560,
+					"parameters": {
+						"variable": "Pontos",
+						"value": "replace(Pontos,\",\",newline)\r"
+					}
+				},
+				{
+					"id": "set-text",
+					"objectClass": "RankingDeJogadores",
+					"sid": 649550263394459,
+					"parameters": {
+						"text": "Pontos"
+					}
+				}
+			],
+			"sid": 686640408230569
+		},
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-clicked",
+					"objectClass": "Enviar",
+					"sid": 285362918757842
+				}
+			],
+			"actions": [
+				{
+					"id": "post-to-url",
+					"objectClass": "AJAX",
+					"sid": 385174872693012,
+					"parameters": {
+						"tag": "\"Enviar\"",
+						"url": "\"https://trabalhojogo2d-default-rtdb.firebaseio.com/ranking.json\"",
+						"data": "\"{\"\"\"&NomeJogador.Text&\"\"\" : \"&Score&\"}\"",
+						"method": "\"PATCH\""
+					}
+				},
+				{
+					"id": "reset-global-variables",
+					"objectClass": "System",
+					"sid": 362786913417827,
+					"parameters": {
+						"reset-static": false
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 856376186259645
+				}
+			],
+			"sid": 373255011521953
+		}
+	],
+	"sid": 643651387872407
+}
